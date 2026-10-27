@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Testimonial Carousel</title>
+  <style>
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      background: #f1f5f9;
+      font-family: Arial, sans-serif;
+      color: #1e293b;
+    }
+
+    .card {
+      width: min(90%, 450px);
+      padding: 32px;
+      background: white;
+      border-radius: 20px;
+      text-align: center;
+      box-shadow: 0 12px 35px #0f172a15;
+    }
+
+    h1 { font-size: 24px; }
+
+    .quote {
+      color: #475569;
+      line-height: 1.7;
+    }
+
+    .name {
+      margin: 20px 0;
+      font-weight: bold;
+      color: #2563eb;
+    }
+
+    button {
+      padding: 10px 18px;
+      margin: 4px;
+      border: 0;
+      border-radius: 9px;
+      background: #2563eb;
+      color: white;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <main class="card">
+    <h1>Client Testimonials</h1>
+    <p class="quote" id="quote"></p>
+    <p class="name" id="name"></p>
+    <button onclick="move(-1)">&#8592; Previous</button>
+    <button onclick="move(1)">Next &#8594;</button>
+  </main>
+
+  <script>
+    const reviews = [
+      {
+        quote: "Great experience! The design was clean and easy to use.",
+        name: "Sarah Johnson"
+      },
+      {
+        quote: "Professional work and excellent attention to detail.",
+        name: "Michael Brown"
+      },
+      {
+        quote: "A simple, attractive design that works perfectly.",
+        name: "Emily Davis"
+      }
+    ];
+
+    let current = 0;
+
+    function showReview() {
+      document.getElementById("quote").textContent =
+        '"' + reviews[current].quote + '"';
+      document.getElementById("name").textContent =
+        reviews[current].name;
+    }
+
+    function move(direction) {
+      current = (current + direction + reviews.length) % reviews.length;
+      showReview();
+    }
+
+    showReview();
+  </script>
+</body>
+</html>
